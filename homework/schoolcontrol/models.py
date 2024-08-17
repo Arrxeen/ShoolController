@@ -25,3 +25,4 @@ class Student(models.Model):
     first_name = models.CharField(max_length=100)
     second_name = models.CharField(max_length=100)
     id_class = models.ForeignKey('Class',on_delete=models.DO_NOTHING)
+    
