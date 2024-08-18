@@ -12,6 +12,9 @@ class Teacher(models.Model):
     second_name = models.CharField(max_length=100)
     subject = models.ForeignKey('Subject',on_delete=models.DO_NOTHING)
 
+    def __str__(self):
+        return f'{self.first_name} {self.second_name}'
+
 
 class Class(models.Model):
     number = models.CharField(max_length=100)
@@ -26,3 +29,15 @@ class Student(models.Model):
     second_name = models.CharField(max_length=100)
     id_class = models.ForeignKey('Class',on_delete=models.DO_NOTHING)
     
+
+class Schedule(models.Model):
+    subject = models.ForeignKey('Subject', on_delete=models.DO_NOTHING)
+    teacher = models.ForeignKey('Teacher', on_delete=models.DO_NOTHING)
+    class_id = models.ForeignKey('Class', on_delete=models.DO_NOTHING)
+    date_time = models.DateTimeField()
+
+
+class Grade(models.Model):
+    grade = models.IntegerField()
+    student = models.ForeignKey(Student, on_delete=models.DO_NOTHING)
+    subject = models.ForeignKey(Subject, on_delete=models.DO_NOTHING)
